@@ -1,0 +1,59 @@
+﻿@model List<Lab6.Models.DataAccess.AcademicRecord>
+
+
+@{
+    ViewData["Title"] = "EditAll";
+}
+
+<h1>Edit</h1>
+
+<h4>
+    Academic Records
+</h4>
+
+<form asp-action="EditAll" method="post">
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                 <a asp-page="/Index" asp-route-sort="course"><label class="control-label">Course</label></a>
+            </th>
+            <th>
+                <a asp-page="/Index" asp-route-sort="student"><label class="control-label">Student</label></a>
+            </th>
+            <th>
+                 <a asp-page="/Index" asp-route-sort="grade"><label class="control-label">Grade</label></a>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+            @for (int i = 0; i < Model.Count; i++)
+            {
+                <tr>
+                    <td>@Model[i].CourseCode - @Model[i].CourseCodeNavigation.Title</td>
+                    <td>@Model[i].StudentId - @Model[i].Student.Name</td>
+                    <td>
+                        <input asp-for="@Model[i].CourseCode" type="hidden"/>
+                        <input asp-for="@Model[i].StudentId" type="hidden"/>
+                        <input asp-for="@Model[i].Grade" class="form-control" style="width:80px"/>
+                    </td>
+                    <td>
+                        <span asp-validation-for="@Model[i].Grade" class="text-danger"></span>
+                       
+                    </td>
+                </tr>
+            }          
+    </tbody>
+</table>
+<div class="form-group">
+     <input type="submit" value="Save" class="btn btn-primary" />
+     <input type="submit" value="Cancel" class="btn btn-secondary" />
+</div>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

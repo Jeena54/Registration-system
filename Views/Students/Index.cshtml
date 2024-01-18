@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Lab6.Models.DataAccess.Student>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <a asp-action="Index" asp-route-sort="name"><label class="control-label">@Html.DisplayNameFor(model => model.Name)</label></a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sort="numberOfCourses"><label class="control-label">Number of Courses</label></a>
+            </th>
+            <th><a asp-action="Index" asp-route-sort="avgGrade"><label class="control-label">Avg.Grade</label></a></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+                <tr>
+                    <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                    @Html.DisplayFor(modelItem => item.NumberOfCourses)
+                    </td>
+                    <td>
+                    @Html.DisplayFor(modelItem => item.myAvgGrade)
+                    </td>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                        <a asp-action="Index" asp-route-delete="@item.Id" onclick="return confirm('Please confirm to delete student:\n\n @item.Name.Trim() \n\n All his/her academic record will be deleted too!');">Delete</a>
+                    </td>
+                </tr>
+        }
+    </tbody>
+</table>
+

@@ -1,0 +1,54 @@
+﻿@model IEnumerable<Lab6.Models.DataAccess.AcademicRecord>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                 <a asp-page="/Index" asp-route-sort="course"><label class="control-label">Course</label></a>
+            </th>
+            <th>
+                <a asp-page="/Index" asp-route-sort="student"><label class="control-label">Student</label></a>
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.Grade)
+                 @*<label class="control-label">Grade</label>*@
+            </th>
+            <th><a style = "text-decoration:none;" asp-action="EditAll" >Edit All</a></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CourseCodeNavigation.Code) - @Html.DisplayFor(modelItem => item.CourseCodeNavigation.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Student.Id) - @Html.DisplayFor(modelItem => item.Student.Name)
+                </td>
+                <td>    
+                    @Html.DisplayFor(modelItem => item.Grade)
+                </td>
+                <td>
+                    @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) *@
+                    <a asp-action="Edit" asp-route-studentId="@item.StudentId" asp-route-courseCode="@item.CourseCode">Edit</a> |
+                    <a asp-action="Index" asp-route-deleteStudentId="@item.StudentId" asp-route-deleteCourseCode="@item.CourseCode"onclick="return confirm('Please confirm to delete the following academic record \n\n Student: @item.Student.Name \n\n Couse: @item.CourseCodeNavigation.Title');">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

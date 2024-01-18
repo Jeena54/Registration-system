@@ -1,0 +1,28 @@
+﻿@model Lab8.Models.ViewModel.SearchViewModel
+
+@{
+    ViewData["Title"] = "Search Employee";
+}
+<h1>Search Student</h1>
+<br />
+<p>To search employees, enter 2 or more characters the employee's first name or last name contains</p>
+<br />
+
+<form asp-action="Search" method="post">
+    <div class="row">
+        <div class="col-md-2">
+            <label asp-for="NameSearchString" class="control-label"></label>
+        </div>
+        <div class="col-md-5">
+            <input asp-for="NameSearchString" class="form-control" />
+        </div>
+        <div class="col-md-2">
+            <input type="submit" value="Search" class="btn btn-primary" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-7">
+            <span asp-validation-for="NameSearchString" class="text-danger"></span>
+        </div>
+    </div>
+</form>
