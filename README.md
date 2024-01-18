@@ -31,6 +31,5 @@ This project is licensed under the Natsasion License. For detailed information, 
 
 ## Contact
 
-If you have any inquiries or feedback, please feel free to reach out to us at [natsasion.sri@gmail.com](mailto:natsasion.sri@gmail.com).
-
+If you have any inquiries or feedback, please feel free to reach out to us at 
 Step into the world of efficient student registrations with our Registration System!
